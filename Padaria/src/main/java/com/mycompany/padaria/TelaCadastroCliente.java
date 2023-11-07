@@ -1,6 +1,7 @@
 package com.mycompany.padaria;
 
-import com.mycompany.padaria.models.Padaria;
+import com.mycompany.padaria.DAO.ClienteDAO;
+import com.mycompany.padaria.models.Cliente;
 import com.mycompany.padaria.utils.ValidadorPadaria;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -18,7 +19,7 @@ import javax.swing.JTextField;
  */
 public class TelaCadastroCliente extends javax.swing.JFrame {
     
-    Padaria obj = null;
+    Cliente obj = null;
 
     public TelaCadastroCliente() {
         
@@ -27,22 +28,52 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         
     }
     
-    public TelaCadastroCliente(Padaria objAlterar) {
+    public TelaCadastroCliente(Cliente objAlterar) {
         initComponents();
 
         this.obj = objAlterar;
 
         //Passar valores do objeto para a tela
-        txtNome.setText(String.valueOf(obj.getNome()));
-        txtCPF.setText(String.valueOf(obj.getCpf()));
-        txtTelefone.setText(String.valueOf(obj.getTelefone()));
-        txtEmail.setText(String.valueOf(obj.getEmail()));
-        txtSexo(String.valueOf(obj.getTelefone()));
-        txtTelefone.setText(String.valueOf(obj.getTelefone()));
-        txtTelefone.setText(String.valueOf(obj.getTelefone()));
-        txtTelefone.setText(String.valueOf(obj.getTelefone()));
-        txtTelefone.setText(String.valueOf(obj.getTelefone()));
-        txtTelefone.setText(String.valueOf(obj.getTelefone()));
+        txtNome.setText(String.valueOf(obj.getNomeCliente()));
+        txtCPF.setText(String.valueOf(obj.getCpfCliente()));
+        txtTelefone.setText(String.valueOf(obj.getTelefoneCliente()));
+        txtEmail.setText(String.valueOf(obj.getEmailCliente()));
+        
+        String sexo = objAlterar.getSexoCliente();
+        
+        if(sexo.equalsIgnoreCase("Masculino")){
+            cboSexo.setSelectedIndex(1);
+            
+        }else if(sexo.equalsIgnoreCase("Feminino")){
+            cboSexo.setSelectedIndex(2); 
+            
+        }else{
+            cboSexo.setSelectedIndex(3);    
+        }
+        
+        String ec = objAlterar.getEcCliente();
+        
+        if(ec.equalsIgnoreCase("Solteiro(a)")){
+            cboSexo.setSelectedIndex(1);
+            
+        }else if(ec.equalsIgnoreCase("Casado(a)")){
+            cboSexo.setSelectedIndex(2);  
+            
+        }else if(ec.equalsIgnoreCase("Separado(a)")){
+            cboSexo.setSelectedIndex(3);
+            
+        }else if(ec.equalsIgnoreCase("Divorciado(a)")){
+            cboSexo.setSelectedIndex(4);
+            
+        }else if(ec.equalsIgnoreCase("Viúvo(a)")){
+            cboSexo.setSelectedIndex(5);
+        }
+        
+        txtDN.setText(String.valueOf(obj.getDnCliente()));
+        txtCEP.setText(String.valueOf(obj.getCepCliente()));
+        txtBairro.setText(String.valueOf(obj.getBairroCliente()));
+        txtNumero.setText(String.valueOf(obj.getNumeroCliente()));
+        txtComplemento.setText(String.valueOf(obj.getComplementoCliente()));
 
     }
 
@@ -69,8 +100,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         lblEC = new javax.swing.JLabel();
         eleDataN = new javax.swing.JLabel();
         txtDN = new javax.swing.JFormattedTextField();
-        txtEC = new javax.swing.JComboBox<>();
-        txtSexo = new javax.swing.JComboBox<>();
+        cboEC = new javax.swing.JComboBox<>();
+        cboSexo = new javax.swing.JComboBox<>();
         txtEmail = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JFormattedTextField();
         txtCPF = new javax.swing.JFormattedTextField();
@@ -157,9 +188,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         }
         txtDN.setName("Data de Nascimento"); // NOI18N
 
-        txtEC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Solteiro(a)", "Casado(a)", "Separado(a)", "Divorciado(a)", "Viúvo(a)" }));
+        cboEC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o estado civil...", "Solteiro(a)", "Casado(a)", "Separado(a)", "Divorciado(a)", "Viúvo(a)" }));
 
-        txtSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Masculino", "Feminino", "Outro" }));
+        cboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o sexo...", "Masculino", "Feminino", "Outro" }));
 
         txtEmail.setName("Email"); // NOI18N
 
@@ -236,10 +267,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     .addComponent(txtNome)
                     .addComponent(txtEmail)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtEC, 0, 114, Short.MAX_VALUE)
+                        .addComponent(cboEC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(75, 75, 75))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(91, 91, 91))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtTelefone)
@@ -278,13 +309,13 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtSexo))
+                            .addComponent(cboSexo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtEC))
+                            .addComponent(cboEC))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -534,30 +565,60 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         if (obj == null) {
             
             //Resgatar dados da interface e passar para o objeto
-            int numeroNota = Integer.parseInt(txtNumero.getText());
-            double valorNota = Double.parseDouble(txtValor.getText());
-
+            String nomeC = txtNome.getText();
+            String cpfC = txtCPF.getText();
+            String telefoneC = txtTelefone.getText();
+            String emailC = txtEmail.getText();
+            String sexoC = cboSexo.getSelectedItem().toString();
+            String ecC = cboEC.getSelectedItem().toString();
+            String dnC = txtDN.getText();
+            int cepC = Integer.parseInt(txtCEP.getText());
+            String bairroC = txtBairro.getText();
+            String logradouroC = txtLogradouro.getText();
+            int numeroC = Integer.parseInt(txtNumero.getText());
+            String complementoC = txtComplemento.getText();
+            
             //Passei os dados da tela para o objeto
-            NotaFiscal novaNota = new NotaFiscal(numeroNota, valorNota);
+            Cliente novoCliente = new Cliente(nomeC, cpfC, telefoneC, emailC, sexoC, ecC, dnC, cepC, bairroC, logradouroC, numeroC, complementoC);
 
             //TODO: Mandar o objeto para a classe DAO
-            boolean retorno = NotaFiscalDAO.salvar(novaNota);
+            boolean retorno = ClienteDAO.salvar(novoCliente);
             if (retorno == true) {
-                JOptionPane.showMessageDialog(rootPane, "Sucesso - Nota gerada. \nId da nota: " + novaNota.getIdNota());
+                JOptionPane.showMessageDialog(rootPane, "Sucesso - Nota gerada. \nId da nota: " + novoCliente.getIdCliente());
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Falha!");
             }
         } else {
             //Modo de alteração
             //Usando dados que o usuário alterou na tela para atualizar o objeto
-            int numeroNota = Integer.parseInt(txtNumero.getText());
-            double ValorNota= Double.parseDouble(txtValor.getText());
+            String nomeC = txtNome.getText();
+            String cpfC = txtCPF.getText();
+            String telefoneC = txtTelefone.getText();
+            String emailC = txtEmail.getText();
+            String sexoC = cboSexo.getSelectedItem().toString();
+            String ecC = cboEC.getSelectedItem().toString();
+            String dnC = txtDN.getText();
+            int cepC = Integer.parseInt(txtCEP.getText());
+            String bairroC = txtBairro.getText();
+            String logradouroC = txtLogradouro.getText();
+            int numeroC = Integer.parseInt(txtNumero.getText());
+            String complementoC = txtComplemento.getText();
             
-            obj.setNumeroNota(numeroNota);
-            obj.setValorNota(ValorNota);
+            obj.setNomeCliente(nomeC);
+            obj.setCpfCliente(cpfC);
+            obj.setTelefoneCliente(telefoneC);
+            obj.setEmailCliente(emailC);
+            obj.setSexoCliente(sexoC);
+            obj.setEcCliente(ecC);
+            obj.setDnCliente(dnC);
+            obj.setCepCliente(cepC);
+            obj.setBairroCliente(bairroC);
+            obj.setLogradouroCliente(logradouroC);
+            obj.setNumeroCliente(numeroC);
+            obj.setComplementoCliente(complementoC);
             
             //Chamar a DAO para alterar no banco
-            boolean retorno = NotaFiscalDAO.alterar(obj);
+            boolean retorno = ClienteDAO.alterar(obj);
             if(retorno){
                 JOptionPane.showMessageDialog(rootPane, "Sucesso");
             } else {
@@ -577,9 +638,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, objValidador.getMensagensErro());
 
         } else{
-
             
-
             TelaCadastroCliente tela2 = new TelaCadastroCliente();
             TelaCadastroC tela = new TelaCadastroC();
             tela.setVisible(true);
@@ -675,6 +734,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JComboBox<String> cboEC;
+    private javax.swing.JComboBox<String> cboSexo;
     private javax.swing.JLabel eleDataN;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -711,12 +772,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JFormattedTextField txtDN;
-    private javax.swing.JComboBox<String> txtEC;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLogradouro;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
-    private javax.swing.JComboBox<String> txtSexo;
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

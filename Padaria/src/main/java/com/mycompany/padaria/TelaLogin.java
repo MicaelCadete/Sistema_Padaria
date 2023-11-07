@@ -45,11 +45,11 @@ public class TelaLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblLogin.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        lblLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/padaria/imagens/do-utilizador.png"))); // NOI18N
+        lblLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/do-utilizador.png"))); // NOI18N
         lblLogin.setText("Login:");
 
         lblSenha.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        lblSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/padaria/imagens/trancar.png"))); // NOI18N
+        lblSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trancar.png"))); // NOI18N
         lblSenha.setText("Senha:");
 
         txtLogin.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -82,7 +82,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setBackground(new java.awt.Color(60, 63, 65));
+        jButton1.setBackground(new java.awt.Color(242, 242, 242));
         jButton1.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -122,9 +122,9 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblSenha)
-                            .addComponent(lblLogin))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtLogin)
