@@ -18,16 +18,16 @@ public class Cliente {
     private String sexoCliente;
     private String ecCliente;
     private String dnCliente;
-    private int cepCliente;
+    private String cepCliente;
     private String bairroCliente;
     private String logradouroCliente;
-    private int numeroCliente;
+    private String numeroCliente;
     private String complementoCliente;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nomeCliente, String cpfCliente, String telefoneCliente, String emailCliente, String sexoCliente, String ecCliente, String dnCliente, int cepCliente, String bairroCliente, String logradouroCliente, int numeroCliente, String complementoCliente) {
+    public Cliente(int idCliente, String nomeCliente, String cpfCliente, String telefoneCliente, String emailCliente, String sexoCliente, String ecCliente, String dnCliente, String cepCliente, String bairroCliente, String logradouroCliente, String numeroCliente, String complementoCliente) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;
@@ -49,7 +49,7 @@ public class Cliente {
         this.cpfCliente = cpfCliente;
     }
 
-    public Cliente(String nomeCliente, String cpfCliente, String telefoneCliente, String emailCliente, String sexoCliente, String ecCliente, String dnCliente, int cepCliente, String bairroCliente, String logradouroCliente, int numeroCliente, String complementoCliente) {
+    public Cliente(String nomeCliente, String cpfCliente, String telefoneCliente, String emailCliente, String sexoCliente, String ecCliente, String dnCliente, String cepCliente, String bairroCliente, String logradouroCliente, String numeroCliente, String complementoCliente) {
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;
         this.telefoneCliente = telefoneCliente;
@@ -62,6 +62,12 @@ public class Cliente {
         this.logradouroCliente = logradouroCliente;
         this.numeroCliente = numeroCliente;
         this.complementoCliente = complementoCliente;
+    }
+
+    public Cliente(String nomeCliente, String cpfCliente, String telefoneCliente) {
+        this.nomeCliente = nomeCliente;
+        this.cpfCliente = cpfCliente;
+        this.telefoneCliente = telefoneCliente;
     }
 
     public int getIdCliente() {
@@ -128,11 +134,11 @@ public class Cliente {
         this.dnCliente = dnCliente;
     }
 
-    public int getCepCliente() {
+    public String getCepCliente() {
         return cepCliente;
     }
 
-    public void setCepCliente(int cepCliente) {
+    public void setCepCliente(String cepCliente) {
         this.cepCliente = cepCliente;
     }
 
@@ -152,11 +158,11 @@ public class Cliente {
         this.logradouroCliente = logradouroCliente;
     }
 
-    public int getNumeroCliente() {
+    public String getNumeroCliente() {
         return numeroCliente;
     }
 
-    public void setNumeroCliente(int numeroCliente) {
+    public void setNumeroCliente(String numeroCliente) {
         this.numeroCliente = numeroCliente;
     }
 
